@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MvcApplication1.Controllers
 {
+    [Authorize]
     public class DemoController : Controller
     {
         //
