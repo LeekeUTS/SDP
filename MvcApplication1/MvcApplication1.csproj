@@ -440,14 +440,11 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\Profile.cshtml" />
     <Content Include="Views\Demo\Help.cshtml" />
     <Content Include="Views\Demo\Newsession.cshtml" />
     <Content Include="Views\Demo\Program.cshtml" />
-    <Content Include="Views\Demo\Signup.cshtml" />
     <Content Include="Views\Demo\Workshop.cshtml" />
-    <Content Include="Views\Demo\db_WorkShopSet.cshtml" />
     <Content Include="Views\Demo\WorkshopList.cshtml" />
     <Content Include="Views\Demo\Json_Campus.cshtml" />
     <Content Include="Views\Demo\Json_Student.cshtml" />

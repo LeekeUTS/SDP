@@ -67,8 +67,9 @@ $(document).ready(function() {
         $('#wrapper').toggleClass('toggled');
     });
 
-    JsonUrl = "http://localhost:8080/WebDeploy/";
-    SessionSID = "11530270++";
+    //JsonUrl = "http://localhost:8080/WebDeploy/";
+    //alert(JsonUrl);
+    //SessionSID = "11530270";
     //SessionSID = "11386617";
     $(".f_loading").html("<div class='text_c mal'><button class='btn btn-lg btn-primary m-progress'>Button</button></div>")
 

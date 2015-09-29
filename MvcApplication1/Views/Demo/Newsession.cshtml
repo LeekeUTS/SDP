@@ -4,7 +4,7 @@ ViewBag.Title = "Newsession";
 <h2>Workshop sessions</h2>
 <!-- // todo: studentid -->
 <script>
-    api_ajax("api/workshop/booking", "/search?StudentId='11530270  '")
+    api_ajax("api/workshop/booking", "/search?StudentId=11530270&active=true&page")
 </script>
 <div class="f_loading"></div>
 <ul class="list-group f_load" data-bind="foreach: ko_array">
