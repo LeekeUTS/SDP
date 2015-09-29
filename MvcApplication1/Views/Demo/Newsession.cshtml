@@ -4,13 +4,14 @@ ViewBag.Title = "Newsession";
 <h2>Workshop sessions</h2>
 <!-- // todo: studentid -->
 <script>
-    api_ajax("api/workshop/booking", "/search?StudentId=11530270&active=true&page")
+    api_ajax("api/workshop/booking", "/search?StudentId=@User.Identity.Name&active=true&PageSize=1000")
 </script>
 <div class="f_loading"></div>
-<ul class="list-group f_load" data-bind="foreach: ko_array">
+<ul class="list-group f_load" id="" data-bind="foreach: ko_array">
     <li class="list-group-item">
         <a href="javascript:void(0)" data-toggle="modal" data-target="#NewsessionModal"
-           data-bind="text: topic, attr: {
+           data-bind="text: workshopID+'. '+topic, attr: {
+            'data-studentId': '@User.Identity.Name',
             'data-BookingId': BookingId,
             'data-workshopID': workshopID,
             'data-studentID': studentID,
@@ -73,3 +74,6 @@ ViewBag.Title = "Newsession";
         </div>
     </div>
 </div>
+<script>
+   
+</script>

@@ -11,7 +11,7 @@
 <ul class="list-group f_load" data-bind="foreach: ko_array">
     <li class="list-group-item">
         <a href="javascript:void(0)" data-toggle="modal" data-target="#WorkshopListModal"
-           data-bind="text: topic, attr: {
+           data-bind="text: WorkshopId+'. '+topic, attr: {
     'data-WorkshopId': WorkshopId,
     'data-topic': topic,
     'data-description': description,

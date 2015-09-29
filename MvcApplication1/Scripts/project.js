@@ -67,17 +67,13 @@ $(document).ready(function() {
         $('#wrapper').toggleClass('toggled');
     });
 
-    //JsonUrl = "http://localhost:8080/WebDeploy/";
-    //alert(JsonUrl);
-    //SessionSID = "11530270";
-    //SessionSID = "11386617";
     $(".f_loading").html("<div class='text_c mal'><button class='btn btn-lg btn-primary m-progress'>Button</button></div>")
 
    
 });
 
 JsonUrl = "http://localhost:8080/WebDeploy/";
-SessionSID = "11386617";
+
 function api_ajax(getUrl, getAfter) {
     $.ajax({
         // Json_WorkshopWorkshopSets
@@ -93,9 +89,13 @@ function api_ajax(getUrl, getAfter) {
             alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
         },
         success: function (result) {
+            console.log(result);
             ko.applyBindings({
                 ko_array: result.Results
             });
+            $('ul.f_load li').not(function (i) {
+                return $(this).prevAll('li:has(a[data-workshopid="' + $('a', this).attr('data-workshopid') + '"])').length < 1;
+            }).remove();
             $(".f_loading div").fadeOut(function () {
                 $(".f_load").fadeIn();
             });
@@ -107,6 +107,7 @@ function api_ajax(getUrl, getAfter) {
 $(document).ready(function () {
     $('#WorkshopListModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
+        var studentId = button.data('studentId')
         var WorkshopId = button.data('workshopid')
         var topic = button.data('topic')
         var description = button.data('description')
@@ -140,13 +141,13 @@ $(document).ready(function () {
         modal.find('.modal-DaysOfWeek').text(DaysOfWeek)
         modal.find('.modal-BookingCount').text(BookingCount)
         modal.find('.modal-archived').text(archived)
-        //$("#test_WorkshopBookingCreate").text("javascript:api_WorkshopBookingCreate(" + WorkshopId + "," + SessionSID + "," + SessionSID + ")")
-        $("#WorkshopBookingCreate").attr("href", "javascript:api_WorkshopBookingCreate(" + WorkshopId + "," + SessionSID + "," + SessionSID + ")")
+        $("#WorkshopBookingCreate").attr("href", "javascript:api_WorkshopBookingCreate(" + WorkshopId + "," + studentId + "," + studentId + ")")
     })
 
     //Page:Newsession
     $('#NewsessionModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
+        var studentId = button.data('studentId')
         var BookingId = button.data('BookingId')
         var workshopid = button.data('workshopid')
         var studentID = button.data('studentID')
@@ -186,7 +187,7 @@ $(document).ready(function () {
         modal.find('.json-reminder_sent').text(reminder_sent)
         modal.find('.json-WorkshopArchived').text(WorkshopArchived)
         modal.find('.json-BookingArchived').text(BookingArchived)
-        $("#WorkshopBookingCancel").attr("href", "javascript:api_WorkshopBookingCancel(" + workshopid + "," + SessionSID + "," + SessionSID + ")")
+        $("#WorkshopBookingCancel").attr("href", "javascript:api_WorkshopBookingCancel(" + workshopid + "," + studentId + "," + studentId + ")")
     })
 });
 
@@ -209,6 +210,29 @@ function api_WorkshopBookingCreate(workshopId, studentId, userId) {
             }
         }
     })
+}
+
+function api_Student(studentId) {
+    $.ajax({
+        type: "Get",
+        beforeSend: function (request) {
+            request.setRequestHeader("AppKey", "123456");
+            $(".f_loading").removeClass("none");
+        },
+        contentType: "application/json",
+        url: JsonUrl + "api/student?id=" + studentId,
+        dataType: 'json',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+        },
+        success: function (result) {
+            console.log(result);
+            ko.applyBindings(result.Student);
+            $(".f_loading div").fadeOut(function () {
+                $(".f_load").fadeIn();
+            });
+        }
+    });
 }
 
 function api_WorkshopBookingCancel(workshopId, studentId, userId) {
