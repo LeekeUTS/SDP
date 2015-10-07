@@ -1,4 +1,7 @@
-$(document).ready(function() {
+JsonUrl = "http://localhost:8080/WebDeploy/";
+//JsonUrl = "http://utsdp.cloudapp.net/WebDeploy/";
+
+$(document).ready(function () {
     //Validate
     $('.input-group input[required], .input-group textarea[required], .input-group select[required]').on('keyup change', function() {
         var $form = $(this).closest('form'),
@@ -72,7 +75,7 @@ $(document).ready(function() {
    
 });
 
-JsonUrl = "http://localhost:8080/WebDeploy/";
+
 
 function api_ajax(getUrl, getAfter) {
     $.ajax({

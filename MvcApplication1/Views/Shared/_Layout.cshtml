@@ -51,8 +51,12 @@
                 <li>@Html.ActionLink("Workshop Registration", "Workshop", "Demo")</li>
                 <li>@Html.ActionLink("Programs", "Program", "Demo")</li>
                 <li>@Html.ActionLink("FAQ", "Help", "Demo")</li>
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
+    @Html.AntiForgeryToken()
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Exit</a></li>
-                @*<li class="none">@Html.ActionLink("Exit", "Login", "Demo")</li>
+}
+                @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Exit</a></li>
+               <li class="none">@Html.ActionLink("Exit", "Login", "Demo")</li>
     <li class="none"><a href="javascript:void(0)">All the link below is for testing</a></li>
     <li class="none">@Html.ActionLink("Json Index", "Json_index", "Demo", new { }, new{target="_blank"})</li>
     <li class="none">@Html.ActionLink("Account Login", "Login", "Account", new { }, new { target = "_blank" })</li>
